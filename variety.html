@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LASUED SIWES Portal</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #071a12;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* NAVBAR */
+
+      nav {
+        width: 100%;
+        padding: 18px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(15px);
+        background: rgba(0, 0, 0, 0.25);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: white;
+      }
+
+      .logo h2 {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 35px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #43d17d;
+      }
+
+      .nav-btn {
+        padding: 12px 26px;
+        border: none;
+        border-radius: 40px;
+        background: linear-gradient(135deg, #1fa463, #43d17d);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 10px 30px rgba(67, 209, 125, 0.3);
+      }
+
+      .nav-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      /* HERO SECTION */
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 140px 8% 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: #1fa463;
+        border-radius: 50%;
+        filter: blur(180px);
+        opacity: 0.25;
+        top: -150px;
+        left: -100px;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: #43d17d;
+        border-radius: 50%;
+        filter: blur(160px);
+        opacity: 0.2;
+        bottom: -120px;
+        right: -100px;
+      }
+
+      .hero-text {
+        width: 55%;
+        z-index: 2;
+      }
+
+      .hero-text h1 {
+        font-size: 64px;
+        line-height: 1.2;
+        margin-bottom: 25px;
+      }
+
+      .hero-text span {
+        color: #43d17d;
+      }
+
+      .hero-text p {
+        color: #c8d4ce;
+        line-height: 1.8;
+        margin-bottom: 35px;
+        font-size: 16px;
+        width: 90%;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .primary-btn {
+        padding: 15px 32px;
+        border: none;
+        border-radius: 40px;
+        background: linear-gradient(135deg, #1fa463, #43d17d);
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(67, 209, 125, 0.35);
+        transition: 0.3s;
+      }
+
+      .primary-btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .secondary-btn {
+        padding: 15px 32px;
+        border-radius: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        backdrop-filter: blur(15px);
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .secondary-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* HERO CARD */
+
+      .hero-card {
+        width: 380px;
+        padding: 30px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        z-index: 2;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .hero-card h3 {
+        margin-bottom: 25px;
+        font-size: 24px;
+      }
+
+      .card-item {
+        padding: 18px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        margin-bottom: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .card-item h4 {
+        font-size: 17px;
+        margin-bottom: 6px;
+      }
+
+      .card-item p {
+        color: #c8d4ce;
+        font-size: 14px;
+      }
+
+      /* FEATURES */
+
+      .features {
+        padding: 90px 8%;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 42px;
+        margin-bottom: 12px;
+      }
+
+      .section-title p {
+        color: #b9c5bf;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 35px;
+        border-radius: 28px;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: #43d17d;
+      }
+
+      .feature-card h3 {
+        margin: 18px 0 12px;
+      }
+
+      .feature-card p {
+        color: #bfc9c4;
+        line-height: 1.7;
+        font-size: 14px;
+      }
+
+      .icon {
+        width: 65px;
+        height: 65px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        background: linear-gradient(135deg, #1fa463, #43d17d);
+      }
+
+      /* FOOTER */
+
+      footer {
+        padding: 35px 8%;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        margin-top: 60px;
+        color: #b8c3bd;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 980px) {
+        .hero {
+          flex-direction: column;
+          gap: 60px;
+        }
+
+        .hero-text {
+          width: 100%;
+          text-align: center;
+        }
+
+        .hero-text p {
+          width: 100%;
+        }
+
+        .hero-card {
+          width: 100%;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero-text h1 {
+          font-size: 45px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero {
+          padding-top: 120px;
+        }
+
+        .hero-text h1 {
+          font-size: 36px;
+        }
+
+        .logo h2 {
+          font-size: 14px;
+        }
+
+        .nav-btn {
+          padding: 10px 18px;
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <nav>
+      <div class="logo">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/5/59/LASUED_logo.png"
+          alt="LASUED Logo"
+        />
+
+        <h2>
+          Lagos State University <br />
+          of Education
+        </h2>
+      </div>
+
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Departments</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <button class="nav-btn" onclick="window.location.href='login.html'">
+        Student Login
+      </button>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Smart Digital <span>SIWES Portal</span> For LASUED Students</h1>
+
+        <p>
+          Manage internship records, upload logbooks, track attendance,
+          communicate with supervisors, and monitor SIWES progress through a
+          modern digital platform designed for Lagos State University of
+          Education students.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="primary-btn" onclick="window.location.href='register.html'">
+            Get Started
+          </button>
+          <button class="secondary-btn" onclick="window.location.href='login.html'">
+            Login
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Student Dashboard</h3>
+
+        <div class="card-item">
+          <h4>Weekly Logbook Upload</h4>
+          <p>Submit SIWES weekly activities digitally.</p>
+        </div>
+
+        <div class="card-item">
+          <h4>Supervisor Feedback</h4>
+          <p>Receive comments and approval instantly.</p>
+        </div>
+
+        <div class="card-item">
+          <h4>Attendance Monitoring</h4>
+          <p>Track internship attendance records easily.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+
+    <section class="features">
+      <div class="section-title">
+        <h2>Portal Features</h2>
+        <p>Everything students need in one modern platform.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">📄</div>
+          <h3>Digital Logbook</h3>
+          <p>
+            Upload and manage SIWES weekly reports and internship activities
+            online.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">👨‍🏫</div>
+          <h3>Supervisor Access</h3>
+          <p>
+            Supervisors can monitor student progress and leave comments
+            instantly.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">📊</div>
+          <h3>Progress Tracking</h3>
+          <p>
+            View internship status, attendance, approvals, and performance
+            analytics.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🔒</div>
+          <h3>Secure Portal</h3>
+          <p>Built with secure authentication and protected student records.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>© 2026 Lagos State University of Education — SIWES Portal</footer>
+  </body>
+</html>

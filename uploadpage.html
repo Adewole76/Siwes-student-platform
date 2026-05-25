@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>LASUED SIWES Upload Portal</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+
+        background:
+          linear-gradient(rgba(108, 132, 175, 0.65), rgba(108, 132, 175, 0.65)),
+          url("school.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+
+        min-height: 100vh;
+
+        padding: 40px 20px;
+      }
+
+      /* MAIN CONTAINER */
+
+      .container {
+        max-width: 1200px;
+
+        margin: auto;
+      }
+
+      /* TOP HEADER */
+
+      .topbar {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 35px;
+
+        flex-wrap: wrap;
+
+        gap: 20px;
+      }
+
+      /* TITLE */
+
+      .title h1 {
+        color: white;
+
+        font-size: 34px;
+
+        margin-bottom: 8px;
+      }
+
+      .title p {
+        color: #f3f3f3;
+
+        font-size: 15px;
+      }
+
+      /* BACK BUTTON */
+
+      .back-btn {
+        text-decoration: none;
+
+        background: white;
+
+        color: #6c84af;
+
+        padding: 12px 22px;
+
+        border-radius: 40px;
+
+        font-weight: bold;
+
+        transition: 0.3s;
+      }
+
+      .back-btn:hover {
+        background: #f2e0d0;
+      }
+
+      /* GRID */
+
+      .grid {
+        display: grid;
+
+        grid-template-columns: 2fr 1fr;
+
+        gap: 25px;
+      }
+
+      /* CARD */
+
+      .card {
+        background: #fffdf8;
+
+        border-radius: 25px;
+
+        padding: 30px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      /* SECTION TITLE */
+
+      .section-title {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 25px;
+      }
+
+      .section-title i {
+        width: 45px;
+        height: 45px;
+
+        background: #f2e0d0;
+
+        color: #6c84af;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 12px;
+
+        font-size: 18px;
+      }
+
+      .section-title h2 {
+        color: #6c84af;
+
+        font-size: 25px;
+      }
+
+      /* UPLOAD AREA */
+
+      .upload-area {
+        border: 2px dashed #c5e384;
+
+        background: #fdf7c3;
+
+        border-radius: 22px;
+
+        padding: 45px 25px;
+
+        text-align: center;
+
+        margin-bottom: 30px;
+      }
+
+      .upload-area i {
+        font-size: 60px;
+
+        color: #6c84af;
+
+        margin-bottom: 20px;
+      }
+
+      .upload-area h3 {
+        color: #200f07;
+
+        margin-bottom: 12px;
+
+        font-size: 25px;
+      }
+
+      .upload-area p {
+        color: #555;
+
+        margin-bottom: 25px;
+
+        line-height: 1.6;
+      }
+
+      /* FILE BUTTON */
+
+      .file-btn {
+        display: inline-block;
+
+        padding: 14px 28px;
+
+        background: #6c84af;
+
+        color: white;
+
+        border-radius: 40px;
+
+        cursor: pointer;
+
+        font-weight: bold;
+
+        transition: 0.3s;
+      }
+
+      .file-btn:hover {
+        background: #58719b;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      .submission-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 24px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-group label {
+        color: #200f07;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        border: 1px solid #d6dbe8;
+        border-radius: 12px;
+        padding: 13px 14px;
+        outline: none;
+        font-size: 15px;
+        background: white;
+      }
+
+      .submit-btn {
+        width: 100%;
+        border: none;
+        border-radius: 40px;
+        padding: 14px 22px;
+        background: #6c84af;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .submit-btn:hover {
+        background: #58719b;
+      }
+
+      .success-message {
+        display: none;
+        margin-top: 18px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: #c5e384;
+        color: #2f4f1f;
+        font-weight: bold;
+      }
+
+      /* DOCUMENTS */
+
+      .docs {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+        gap: 18px;
+      }
+
+      /* DOC BOX */
+
+      .doc-box {
+        background: #f2e0d0;
+
+        border-radius: 18px;
+
+        padding: 22px;
+
+        transition: 0.3s;
+      }
+
+      .doc-box:hover {
+        transform: translateY(-4px);
+      }
+
+      .doc-box i {
+        font-size: 28px;
+
+        color: #6c84af;
+
+        margin-bottom: 15px;
+      }
+
+      .doc-box h4 {
+        color: #200f07;
+
+        margin-bottom: 8px;
+      }
+
+      .doc-box p {
+        color: #555;
+
+        font-size: 14px;
+
+        line-height: 1.5;
+      }
+
+      /* STATUS */
+
+      .status {
+        display: inline-block;
+
+        margin-top: 15px;
+
+        padding: 6px 14px;
+
+        border-radius: 20px;
+
+        font-size: 13px;
+
+        font-weight: bold;
+      }
+
+      .pending {
+        background: #fdf7c3;
+
+        color: #7a6500;
+      }
+
+      .approved {
+        background: #c5e384;
+
+        color: #2f4f1f;
+      }
+
+      /* RIGHT PANEL */
+
+      .profile {
+        text-align: center;
+      }
+
+      /* PROFILE IMAGE */
+
+      .profile img {
+        width: 100px;
+        height: 100px;
+
+        border-radius: 50%;
+
+        object-fit: cover;
+
+        border: 5px solid #f2e0d0;
+
+        margin-bottom: 15px;
+      }
+
+      .profile h3 {
+        color: #6c84af;
+
+        margin-bottom: 5px;
+      }
+
+      .profile p {
+        color: #666;
+
+        margin-bottom: 8px;
+      }
+
+      /* INFO BOX */
+
+      .info {
+        background: #fdf7c3;
+
+        padding: 18px;
+
+        border-radius: 18px;
+
+        margin-top: 25px;
+
+        text-align: left;
+      }
+
+      .info h4 {
+        color: #6c84af;
+
+        margin-bottom: 10px;
+      }
+
+      .info p {
+        color: #555;
+
+        margin-bottom: 8px;
+
+        font-size: 14px;
+      }
+
+      /* NOTICE */
+
+      .notice {
+        margin-top: 25px;
+
+        background: #f0485f;
+
+        color: white;
+
+        padding: 18px;
+
+        border-radius: 18px;
+      }
+
+      .notice h4 {
+        margin-bottom: 10px;
+      }
+
+      .notice p {
+        line-height: 1.6;
+
+        font-size: 14px;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .title h1 {
+          font-size: 26px;
+        }
+
+        .card {
+          padding: 22px;
+        }
+
+        .upload-area {
+          padding: 35px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- TOPBAR -->
+
+      <div class="topbar">
+        <div class="title">
+          <h1>Upload SIWES Documents</h1>
+
+          <p>Submit and manage your SIWES files easily</p>
+        </div>
+
+        <a href="studentdashboard.html" class="back-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back to Dashboard
+        </a>
+      </div>
+
+      <!-- MAIN GRID -->
+
+      <div class="grid">
+        <!-- LEFT SIDE -->
+
+        <div class="card">
+          <div class="section-title">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <h2>Document Upload</h2>
+          </div>
+
+          <!-- UPLOAD AREA -->
+
+          <form id="projectUploadForm">
+            <div class="submission-form">
+              <div class="form-group">
+                <label for="studentName">Student Name</label>
+                <input
+                  id="studentName"
+                  type="text"
+                  readonly
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="matricNumber">Matric Number</label>
+                <input
+                  id="matricNumber"
+                  type="text"
+                  readonly
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="department">Department</label>
+                <input
+                  id="department"
+                  type="text"
+                  readonly
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="projectTitle">Project / Document Type</label>
+                <select id="projectTitle" required>
+                  <option value="">Select document</option>
+                  <option>Acceptance Letter</option>
+                  <option>SIWES Logbook</option>
+                  <option>SIWES Form</option>
+                  <option>Final Report</option>
+                  <option>Project Report</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="upload-area">
+              <i class="fa-solid fa-file-arrow-up"></i>
+
+              <h3>Submit Project File</h3>
+
+              <p>
+                Upload your SIWES project in PDF, DOC, DOCX, JPG or PNG format
+              </p>
+
+              <label class="file-btn">
+                Choose File
+
+                <input
+                  id="projectFile"
+                  type="file"
+                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                  required
+                />
+              </label>
+
+              <p id="selectedFileName" style="margin-top: 15px">
+                No file selected
+              </p>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fa-solid fa-paper-plane"></i>
+              Submit Project for Review
+            </button>
+
+            <div id="successMessage" class="success-message">
+              Project submitted successfully. Admin can now review it.
+            </div>
+          </form>
+
+          <!-- DOCUMENT TYPES -->
+
+          <div class="docs">
+            <div class="doc-box">
+              <i class="fa-solid fa-file-lines"></i>
+
+              <h4>Acceptance Letter</h4>
+
+              <p>Upload your company acceptance letter</p>
+
+              <span class="status approved"> Approved </span>
+            </div>
+
+            <div class="doc-box">
+              <i class="fa-solid fa-book"></i>
+
+              <h4>SIWES Logbook</h4>
+
+              <p>Upload weekly SIWES logbook reports</p>
+
+              <span class="status pending"> Pending </span>
+            </div>
+
+            <div class="doc-box">
+              <i class="fa-solid fa-file-signature"></i>
+
+              <h4>SIWES Form</h4>
+
+              <p>Submit completed SIWES form</p>
+
+              <span class="status pending"> Pending </span>
+            </div>
+
+            <div class="doc-box">
+              <i class="fa-solid fa-file-pdf"></i>
+
+              <h4>Final Report</h4>
+
+              <p>Upload final SIWES documentation</p>
+
+              <span class="status pending"> Pending </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div>
+          <!-- PROFILE CARD -->
+
+          <div class="card profile">
+            <img id="profileImage" src="profilepic.jpg" alt="Student profile photo" />
+
+            <h3 id="profileName">Judith Azike</h3>
+
+            <p id="profileCourse">Computer Science</p>
+
+            <p id="profileMatric">CSC/2026/001</p>
+          </div>
+
+          <!-- INFO -->
+
+          <div class="card info">
+            <h4>Upload Guidelines</h4>
+
+            <p>• Upload clear and readable files</p>
+
+            <p>• Maximum file size: 5MB</p>
+
+            <p>• Accepted formats: PDF, DOCX, JPG, PNG</p>
+
+            <p>• Ensure correct document naming</p>
+          </div>
+
+          <!-- NOTICE -->
+
+          <div class="notice">
+            <h4>Important Notice</h4>
+
+            <p>
+              All uploaded documents will be reviewed by the SIWES coordinator
+              before approval.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+      const currentUser = SIWES.requireUser("student");
+      const uploadForm = document.getElementById("projectUploadForm");
+      const projectFile = document.getElementById("projectFile");
+      const selectedFileName = document.getElementById("selectedFileName");
+      const successMessage = document.getElementById("successMessage");
+
+      if (currentUser) {
+        document.getElementById("studentName").value = currentUser.fullName;
+        document.getElementById("matricNumber").value = currentUser.matricNumber;
+        document.getElementById("department").value = currentUser.course;
+        document.getElementById("profileName").textContent = currentUser.fullName;
+        document.getElementById("profileCourse").textContent = currentUser.course;
+        document.getElementById("profileMatric").textContent = currentUser.matricNumber;
+        document.getElementById("profileImage").src =
+          currentUser.profileImage || "profilepic.jpg";
+      }
+
+      projectFile.addEventListener("change", () => {
+        selectedFileName.textContent = projectFile.files[0]
+          ? projectFile.files[0].name
+          : "No file selected";
+      });
+
+      uploadForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const file = projectFile.files[0];
+        SIWES.addSubmission({
+          studentId: currentUser.id,
+          studentName: document.getElementById("studentName").value.trim(),
+          matricNumber: document.getElementById("matricNumber").value.trim(),
+          department: document.getElementById("department").value.trim(),
+          projectTitle: document.getElementById("projectTitle").value,
+          fileName: file.name,
+          fileType: SIWES.getFileType(file.name),
+          fileSize: SIWES.formatFileSize(file.size),
+        });
+
+        uploadForm.reset();
+        if (currentUser) {
+          document.getElementById("studentName").value = currentUser.fullName;
+          document.getElementById("matricNumber").value = currentUser.matricNumber;
+          document.getElementById("department").value = currentUser.course;
+        }
+        selectedFileName.textContent = "No file selected";
+        successMessage.style.display = "block";
+
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 4500);
+      });
+    </script>
+  </body>
+</html>

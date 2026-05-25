@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>LASUED Student Registration Portal</title>
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+
+        /* NEW GREEN BACKGROUND */
+
+        background:
+          linear-gradient(rgba(0, 40, 20, 0.75), rgba(0, 40, 20, 0.75)),
+          url("school.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      /* TOP DESIGN */
+
+      .top-design {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 480px;
+        height: 200px;
+        background: #0b4d2b;
+        border-bottom-left-radius: 220px;
+        z-index: 1;
+      }
+
+      .top-design::after {
+        content: "";
+        position: absolute;
+        bottom: 20px;
+        left: 110px;
+        width: 300px;
+        height: 5px;
+        background: #d4af37;
+        border-radius: 20px;
+      }
+
+      /* BOTTOM DESIGN */
+
+      .bottom-design {
+        position: absolute;
+        bottom: -120px;
+        left: -180px;
+        width: 520px;
+        height: 250px;
+        background: #06361d;
+        border-top-right-radius: 300px;
+        z-index: 1;
+      }
+
+      .bottom-design::after {
+        content: "";
+        position: absolute;
+        top: 45px;
+        left: 30px;
+        width: 350px;
+        height: 5px;
+        background: #d4af37;
+        border-radius: 20px;
+        transform: rotate(-10deg);
+      }
+
+      /* HEADER */
+
+      .header {
+        position: relative;
+        z-index: 3;
+
+        display: flex;
+        align-items: center;
+
+        gap: 15px;
+
+        padding: 25px 40px;
+      }
+
+      /* LOGO */
+
+      .header img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+
+        /* VERY IMPORTANT */
+
+        background: white;
+        border-radius: 50%;
+        padding: 5px;
+      }
+
+      /* SCHOOL NAME */
+
+      .header h1 {
+        color: white;
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -1px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+
+      /* MAIN CONTAINER */
+
+      .main-container {
+        position: relative;
+        z-index: 3;
+
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        padding: 20px;
+      }
+
+      /* REGISTRATION CARD */
+
+      .register-container {
+        width: 420px;
+
+        background: rgba(255, 255, 255, 0.96);
+
+        border-radius: 24px;
+
+        padding: 30px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        overflow: hidden;
+
+        position: relative;
+      }
+
+      /* TOP STRIP */
+
+      .register-container::before {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 8px;
+
+        background: linear-gradient(
+          to right,
+          #0b4d2b 33%,
+          #d4af37 33%,
+          #d4af37 66%,
+          #145a32 66%
+        );
+      }
+
+      /* BOTTOM STRIP */
+
+      .register-container::after {
+        content: "";
+
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 8px;
+
+        background: linear-gradient(
+          to right,
+          #145a32 33%,
+          #d4af37 33%,
+          #d4af37 66%,
+          #0b4d2b 66%
+        );
+      }
+
+      /* TITLE */
+
+      .title {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .title h2 {
+        font-size: 28px;
+        color: #06361d;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      .title p {
+        margin-top: 8px;
+        color: #666;
+        font-size: 15px;
+      }
+
+      /* INPUT GROUP */
+
+      .input-group {
+        display: flex;
+        align-items: center;
+
+        border: 1px solid #ccc;
+
+        border-radius: 12px;
+
+        padding: 12px 15px;
+
+        margin-bottom: 18px;
+
+        background: #fafafa;
+      }
+
+      .input-group i {
+        color: #145a32;
+        font-size: 18px;
+        margin-right: 12px;
+      }
+
+      .input-group input,
+      .input-group select {
+        width: 100%;
+
+        border: none;
+        outline: none;
+
+        background: transparent;
+
+        font-size: 16px;
+        color: #333;
+      }
+
+      select {
+        cursor: pointer;
+      }
+
+      /* REGISTER BUTTON */
+
+      .register-btn {
+        width: 100%;
+
+        padding: 14px;
+
+        border: none;
+
+        border-radius: 40px;
+
+        background: linear-gradient(to right, #06361d, #145a32);
+
+        color: white;
+
+        font-size: 18px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        margin-top: 10px;
+
+        transition: 0.3s;
+      }
+
+      .register-btn:hover {
+        transform: translateY(-2px);
+
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* LOGIN LINK */
+
+      .login-link {
+        text-align: center;
+
+        margin-top: 18px;
+      }
+
+      .login-link a {
+        text-decoration: none;
+
+        color: #145a32;
+
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      .message {
+        display: none;
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 12px;
+        background: #ffe2e2;
+        color: #a71919;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      /* COPYRIGHT */
+
+      .copyright {
+        position: relative;
+
+        z-index: 3;
+
+        text-align: center;
+
+        margin-top: 40px;
+        margin-bottom: 20px;
+
+        color: white;
+
+        font-size: 14px;
+
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 768px) {
+        .header {
+          padding: 20px;
+          gap: 10px;
+        }
+
+        .header img {
+          width: 65px;
+          height: 65px;
+        }
+
+        .header h1 {
+          font-size: 20px;
+        }
+
+        .register-container {
+          width: 100%;
+          max-width: 400px;
+
+          padding: 25px;
+        }
+
+        .top-design {
+          width: 300px;
+          height: 150px;
+        }
+
+        .bottom-design {
+          width: 350px;
+          height: 180px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- TOP DESIGN -->
+    <div class="top-design"></div>
+
+    <!-- BOTTOM DESIGN -->
+    <div class="bottom-design"></div>
+
+    <!-- HEADER -->
+
+    <div class="header">
+      <!-- VERY IMPORTANT:
+        PUT YOUR LOGO INSIDE:
+        logo.png
+        -->
+
+      <img src="logo.png" alt="LASUED Logo" />
+
+      <h1>
+        LAGOS STATE UNIVERSITY <br />
+        OF EDUCATION
+      </h1>
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main-container">
+      <!-- REGISTRATION CARD -->
+
+      <div class="register-container">
+        <div class="title">
+          <h2>STUDENT REGISTRATION</h2>
+
+          <p>SIWES Documentation Portal</p>
+        </div>
+
+        <form id="registerForm">
+          <div class="input-group">
+            <i class="fa-regular fa-user"></i>
+
+            <input id="fullName" type="text" placeholder="Full Name" required />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-id-card"></i>
+
+            <input id="matricNumber" type="text" placeholder="Matric Number" required />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+
+            <input id="email" type="email" placeholder="Email Address" required />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-building"></i>
+
+            <select id="course" required>
+              <option value="">Select Department</option>
+
+              <option>Computer Science</option>
+
+              <option>Business Education</option>
+
+              <option>Mathematics</option>
+
+              <option>English Education</option>
+
+              <option>Biology</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-layer-group"></i>
+
+            <select id="level" required>
+              <option value="">Select Level</option>
+
+              <option>200 Level</option>
+
+              <option>300 Level</option>
+
+              <option>400 Level</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+
+            <input id="password" type="password" placeholder="Create Password" required />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+
+          <!-- BUTTON -->
+
+          <button class="register-btn">REGISTER</button>
+          <div id="registerMessage" class="message"></div>
+        </form>
+
+        <!-- LOGIN LINK -->
+
+        <div class="login-link">
+          <a href="login.html"> Already have an account? Login </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+      © 2026 Lagos State University of Education <br />
+
+      SIWES Documentation Portal
+    </div>
+    <script src="app.js"></script>
+    <script>
+      const registerForm = document.getElementById("registerForm");
+      const registerMessage = document.getElementById("registerMessage");
+
+      function showRegisterMessage(message) {
+        registerMessage.textContent = message;
+        registerMessage.style.display = "block";
+      }
+
+      registerForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+          showRegisterMessage("Passwords do not match.");
+          return;
+        }
+
+        try {
+          SIWES.registerStudent({
+            fullName: document.getElementById("fullName").value,
+            matricNumber: document.getElementById("matricNumber").value,
+            email: document.getElementById("email").value,
+            course: document.getElementById("course").value,
+            level: document.getElementById("level").value,
+            password,
+          });
+
+          window.location.href = "studentdashboard.html";
+        } catch (error) {
+          showRegisterMessage(error.message);
+        }
+      });
+    </script>
+  </body>
+</html>

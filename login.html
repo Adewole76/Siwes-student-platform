@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LASUED Student Portal</title>
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Times New Roman", serif;
+      }
+
+      body {
+        height: 100vh;
+        background: url("school.jpg") no-repeat center center/cover;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* BLUR OVERLAY */
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(3.28px);
+        z-index: 1;
+      }
+
+      /* TOP DESIGN */
+
+      .top-design {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30%;
+        height: 40px;
+        background: #003399;
+        border-bottom-left-radius: 280px;
+        z-index: 1;
+      }
+
+      .top-design::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 30px;
+        width: 330px;
+        height: 9px;
+        background: gold;
+        border-bottom-left-radius: 280px;
+        z-index: 2;
+      }
+
+      /* BOTTOM DESIGN */
+
+      .bottom-design {
+        position: absolute;
+        bottom: -100px;
+        left: -120px;
+        width: 440px;
+        height: 180px;
+        background: #0a2c91;
+        border-top-right-radius: 280px;
+        z-index: 2;
+      }
+
+      .bottom-design::after {
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: 30px;
+        width: 300px;
+        height: 9px;
+        background: gold;
+        border-top-right-radius: 380px;
+      }
+
+      /* HEADER */
+
+      .header {
+        position: absolute;
+        top: 20px;
+        left: 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 3;
+      }
+
+      .header img {
+        width: 90px;
+        height: 90px;
+      }
+
+      .header h1 {
+        color: #0a2c91;
+        font-size: 31px;
+        line-height: 1.05;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+        letter-spacing: -1px;
+      }
+
+      /* LOGIN CARD */
+
+      .login-container {
+        position: relative;
+        z-index: 3;
+        width: 340px;
+        background: #f8f8f8;
+        margin: auto;
+        top: 50%;
+        transform: translateY(-54%);
+        border-radius: 20px;
+        padding: 28px 28px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+      }
+
+      /* CARD TOP COLORS */
+
+      .login-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5.5px;
+        background: linear-gradient(
+          to right,
+          #0a2c91 33%,
+          gold 33%,
+          gold 66%,
+          #d62828 66%
+        );
+      }
+
+      /* CARD BOTTOM COLORS */
+
+      .login-container::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5.5px;
+        background: linear-gradient(
+          to right,
+          #d62828 33%,
+          gold 33%,
+          gold 66%,
+          #0a2c91 66%
+        );
+      }
+
+      .portal-title {
+        text-align: center;
+        margin-bottom: 35px;
+      }
+
+      .portal-title h2 {
+        font-size: 24px;
+        font-weight: normal;
+        line-height: 1.2;
+        color: #000;
+      }
+
+      /* INPUTS */
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid #999;
+        margin-bottom: 22px;
+        padding-bottom: 8px;
+      }
+
+      .input-group i {
+        color: #666;
+        margin-right: 12px;
+        font-size: 20px;
+      }
+
+      .input-group input {
+        border: none;
+        outline: none;
+        width: 100%;
+        background: transparent;
+        font-size: 18px;
+      }
+
+      /* BUTTON */
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 35px;
+        background: #0a2c91;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+      }
+
+      .login-btn:hover {
+        background: #123db8;
+      }
+
+      /* LINKS */
+
+      .links {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .links a {
+        display: block;
+        margin: 12px 0;
+        text-decoration: none;
+        color: #000;
+        font-size: 18px;
+      }
+
+      .links a:hover {
+        color: #0a2c91;
+      }
+
+      /* FOOTER LINKS */
+
+      .footer-links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 25px;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+        color: #000;
+        font-size: 16px;
+      }
+
+      .footer-links a:hover {
+        color: #0a2c91;
+      }
+
+      .message {
+        display: none;
+        margin-top: 15px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: #ffe2e2;
+        color: #a71919;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      /* COPYRIGHT */
+
+      .copyright {
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
+        text-align: center;
+        z-index: 3;
+        font-size: 16px;
+        color: #000;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 768px) {
+        .header {
+          left: 15px;
+          top: 15px;
+        }
+
+        .header img {
+          width: 65px;
+          height: 65px;
+        }
+
+        .header h1 {
+          font-size: 16px;
+        }
+
+        .login-container {
+          width: 90%;
+          padding: 30px 20px;
+        }
+
+        .portal-title h2 {
+          font-size: 24px;
+        }
+
+        .input-group input {
+          font-size: 16px;
+        }
+
+        .links a {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- TOP DESIGN -->
+    <div class="top-design"></div>
+
+    <!-- BOTTOM DESIGN -->
+    <div class="bottom-design"></div>
+
+    <!-- HEADER -->
+    <div class="header">
+      <!-- REPLACE logo.png WITH YOUR SCHOOL LOGO -->
+      <img src="logo.png" alt="LASUED Logo" />
+
+      <h1>
+        LAGOS STATE UNIVERSITY <br />
+        OF EDUCATION
+      </h1>
+    </div>
+
+    <!-- LOGIN CARD -->
+
+    <div class="login-container">
+      <div class="portal-title">
+        <h2>
+          STUDENT PORTAL <br />
+          LOGIN
+        </h2>
+      </div>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <i class="fa-regular fa-user"></i>
+          <input
+            id="loginIdentifier"
+            type="text"
+            placeholder="Matric Number or Email"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <i class="fa-solid fa-lock"></i>
+          <input id="loginPassword" type="password" placeholder="Password" required />
+        </div>
+
+        <button class="login-btn">LOGIN</button>
+        <div id="loginMessage" class="message"></div>
+      </form>
+
+      <div class="links">
+        <a href="#" id="forgotPassword">Forgot Password?</a>
+        <a href="register.html">Register as New Student</a>
+      </div>
+
+      <div class="footer-links">
+        <a href="mailto:siwes@lasued.edu.ng">Help Desk</a>
+        <a href="mailto:siwes@lasued.edu.ng">Contact Us</a>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+      LASUED State University of Education. <br />
+      © All rights reserved
+    </div>
+    <script src="app.js"></script>
+    <script>
+      const loginForm = document.getElementById("loginForm");
+      const loginMessage = document.getElementById("loginMessage");
+
+      function showMessage(message) {
+        loginMessage.textContent = message;
+        loginMessage.style.display = "block";
+      }
+
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const user = SIWES.login(
+          document.getElementById("loginIdentifier").value,
+          document.getElementById("loginPassword").value,
+        );
+
+        if (!user) {
+          showMessage("Invalid login details. Check your matric number and password.");
+          return;
+        }
+
+        window.location.href =
+          user.role === "admin" ? "admin-dashboard.html" : "studentdashboard.html";
+      });
+
+      document.getElementById("forgotPassword").addEventListener("click", (event) => {
+        event.preventDefault();
+        showMessage("Please contact the SIWES office to reset your password.");
+      });
+    </script>
+  </body>
+</html>

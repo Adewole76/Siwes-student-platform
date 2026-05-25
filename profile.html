@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Profile</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+          linear-gradient(rgba(10, 35, 80, 0.65), rgba(10, 35, 80, 0.65)),
+          url("school.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+      }
+
+      .profile-card {
+        width: 100%;
+        max-width: 520px;
+        background: white;
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+      }
+
+      .profile-header {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .profile-header img {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #eef4ff;
+        margin-bottom: 14px;
+      }
+
+      .profile-header h1 {
+        color: #123d7a;
+        font-size: 24px;
+        margin-bottom: 6px;
+      }
+
+      .profile-header p {
+        color: #666;
+        font-size: 15px;
+      }
+
+      .profile-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 14px 0;
+        border-bottom: 1px solid #edf0f5;
+      }
+
+      .profile-row:last-child {
+        border-bottom: none;
+      }
+
+      .profile-row span {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .profile-row strong {
+        color: #123d7a;
+        font-size: 14px;
+        text-align: right;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .actions a,
+      .actions button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 0;
+        border-radius: 12px;
+        padding: 13px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .back-btn {
+        background: #eef4ff;
+        color: #123d7a;
+      }
+
+      .logout-btn {
+        background: #123d7a;
+        color: white;
+      }
+
+      @media (max-width: 520px) {
+        .profile-row {
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .profile-row strong {
+          text-align: left;
+        }
+
+        .actions {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="profile-card">
+      <div class="profile-header">
+        <img id="profileImage" src="profilepic.jpg" alt="Student profile photo" />
+        <h1 id="profileName">Student Name</h1>
+        <p id="profileMatricHeader">Matric Number</p>
+      </div>
+
+      <div class="profile-row">
+        <span>Full Name</span>
+        <strong id="fullName">Student Name</strong>
+      </div>
+
+      <div class="profile-row">
+        <span>Matric Number</span>
+        <strong id="matricNumber">Matric Number</strong>
+      </div>
+
+      <div class="profile-row">
+        <span>Course</span>
+        <strong id="course">Course</strong>
+      </div>
+
+      <div class="profile-row">
+        <span>Level</span>
+        <strong id="level">Level</strong>
+      </div>
+
+      <div class="profile-row">
+        <span>Email</span>
+        <strong id="email">Email</strong>
+      </div>
+
+      <div class="actions">
+        <a href="studentdashboard.html" class="back-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+          Dashboard
+        </a>
+        <button id="logoutBtn" class="logout-btn">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </button>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+      const currentUser = SIWES.requireUser("student");
+
+      if (currentUser) {
+        document.getElementById("profileImage").src =
+          currentUser.profileImage || "profilepic.jpg";
+        document.getElementById("profileName").textContent = currentUser.fullName;
+        document.getElementById("profileMatricHeader").textContent =
+          currentUser.matricNumber;
+        document.getElementById("fullName").textContent = currentUser.fullName;
+        document.getElementById("matricNumber").textContent = currentUser.matricNumber;
+        document.getElementById("course").textContent = currentUser.course;
+        document.getElementById("level").textContent = currentUser.level;
+        document.getElementById("email").textContent = currentUser.email;
+      }
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        SIWES.logout();
+      });
+    </script>
+  </body>
+</html>

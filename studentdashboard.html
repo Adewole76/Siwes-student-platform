@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>LASUED SIWES Student Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+
+        background:
+          linear-gradient(rgba(10, 35, 80, 0.55), rgba(10, 35, 80, 0.55)),
+          url("school.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+
+        min-height: 100vh;
+
+        color: #141212;
+
+        overflow-x: hidden;
+      }
+
+      /* MAIN LAYOUT */
+
+      .dashboard {
+        display: flex;
+
+        min-height: 100vh;
+      }
+
+      /* SIDEBAR */
+
+      .sidebar {
+        width: 260px;
+
+        background: rgba(255, 255, 255, 0.15);
+
+        backdrop-filter: blur(10px);
+
+        border-right: 1px solid rgba(255, 255, 255, 0.25);
+
+        padding: 25px 20px;
+
+        position: fixed;
+
+        height: 100vh;
+
+        overflow-y: auto;
+      }
+
+      /* LOGO AREA */
+
+      .logo-area {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 40px;
+      }
+
+      .logo-area img {
+        width: 60px;
+        height: 60px;
+
+        background: #fffdf8;
+
+        border-radius: 50%;
+
+        padding: 4px;
+      }
+
+      .logo-area h2 {
+        color: white;
+
+        font-size: 20px;
+
+        line-height: 1.1;
+      }
+
+      /* MENU */
+
+      .menu {
+        list-style: none;
+      }
+
+      .menu li {
+        margin-bottom: 12px;
+      }
+
+      .menu a {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        padding: 14px 16px;
+
+        border-radius: 12px;
+
+        text-decoration: none;
+
+        color: white;
+
+        transition: 0.3s;
+      }
+
+      .menu a:hover,
+      .menu a.active {
+        background: white;
+
+        color: #123d7a;
+
+        transform: translateX(5px);
+      }
+
+      .menu i {
+        font-size: 18px;
+      }
+
+      /* MAIN CONTENT */
+
+      .main-content {
+        margin-left: 260px;
+
+        width: calc(100% - 260px);
+
+        padding: 30px;
+      }
+
+      /* TOPBAR */
+
+      .topbar {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 30px;
+      }
+
+      /* WELCOME */
+
+      .welcome h1 {
+        color: white;
+
+        font-size: 30px;
+
+        margin-bottom: 5px;
+      }
+
+      .welcome p {
+        color: #ddd;
+
+        font-size: 15px;
+      }
+
+      /* PROFILE */
+
+      .profile {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        background: rgba(255, 255, 255, 0.12);
+
+        padding: 10px 15px;
+
+        border-radius: 14px;
+
+        backdrop-filter: blur(8px);
+      }
+
+      .profile img {
+        width: 45px;
+        height: 45px;
+
+        border-radius: 50%;
+
+        object-fit: cover;
+
+        border: 2px solid white;
+      }
+
+      .profile-text h4 {
+        color: white;
+
+        font-size: 15px;
+      }
+
+      .profile-text p {
+        color: #ddd;
+
+        font-size: 13px;
+      }
+
+      /* CARDS */
+
+      .cards {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+        gap: 20px;
+
+        margin-bottom: 35px;
+      }
+
+      /* CARD */
+
+      .card {
+        background: white;
+
+        border-radius: 20px;
+
+        padding: 22px;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+      }
+
+      .card-top {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 15px;
+      }
+
+      .card-top i {
+        width: 45px;
+        height: 45px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 12px;
+
+        background: #eef4ff;
+
+        color: #1d4e89;
+
+        font-size: 18px;
+      }
+
+      .card h2 {
+        font-size: 28px;
+
+        color: #123d7a;
+      }
+
+      .card p {
+        color: #666;
+
+        font-size: 15px;
+      }
+
+      /* MAIN GRID */
+
+      .content-grid {
+        display: grid;
+
+        grid-template-columns: 2fr 1fr;
+
+        gap: 25px;
+      }
+
+      /* PANELS */
+
+      .panel {
+        background: white;
+
+        border-radius: 22px;
+
+        padding: 25px;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      /* PANEL TITLE */
+
+      .panel-title {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 20px;
+      }
+
+      .panel-title h3 {
+        color: #123d7a;
+
+        font-size: 22px;
+      }
+
+      /* UPLOAD BOX */
+
+      .upload-box {
+        border: 2px dashed #c8d4ea;
+
+        border-radius: 18px;
+
+        padding: 30px;
+
+        text-align: center;
+
+        background: #eef4ff;
+      }
+
+      .upload-box i {
+        font-size: 45px;
+
+        color: #1d4e89;
+
+        margin-bottom: 15px;
+      }
+
+      .upload-box h4 {
+        margin-bottom: 10px;
+
+        color: #123d7a;
+      }
+
+      .upload-box p {
+        color: #666;
+
+        margin-bottom: 20px;
+      }
+
+      .upload-btn {
+        display: inline-block;
+
+        text-decoration: none;
+
+        padding: 12px 22px;
+
+        border: none;
+
+        background: #123d7a;
+
+        color: white;
+
+        border-radius: 30px;
+
+        cursor: pointer;
+
+        font-weight: bold;
+
+        transition: 0.3s;
+      }
+
+      .upload-btn:hover {
+        background: #0d2d5c;
+      }
+
+      /* TABLE */
+
+      table {
+        width: 100%;
+
+        border-collapse: collapse;
+      }
+
+      table th {
+        background: #eef4ff;
+
+        color: #123d7a;
+
+        padding: 14px;
+
+        text-align: left;
+
+        font-size: 14px;
+      }
+
+      table td {
+        padding: 14px;
+
+        border-bottom: 1px solid #eee;
+
+        font-size: 14px;
+      }
+
+      /* STATUS */
+
+      .status {
+        padding: 6px 12px;
+
+        border-radius: 20px;
+
+        font-size: 13px;
+
+        font-weight: bold;
+      }
+
+      .approved {
+        background: #d8eadf;
+
+        color: #2f4f1f;
+      }
+
+      .pending {
+        background: #fff4cf;
+
+        color: #946200;
+      }
+
+      .rejected {
+        background: #d62828;
+
+        color: white;
+      }
+
+      /* SUPERVISOR CARD */
+
+      .supervisor {
+        text-align: center;
+      }
+
+      .supervisor img {
+        width: 90px;
+        height: 90px;
+
+        border-radius: 50%;
+
+        margin-bottom: 15px;
+
+        object-fit: cover;
+      }
+
+      .supervisor h3 {
+        color: #123d7a;
+
+        margin-bottom: 5px;
+      }
+
+      .supervisor p {
+        color: #666;
+
+        margin-bottom: 8px;
+      }
+
+      /* NOTIFICATIONS */
+
+      .notice {
+        background: #f7faff;
+
+        padding: 14px;
+
+        border-radius: 12px;
+
+        margin-top: 15px;
+
+        border-left: 4px solid #123d7a;
+      }
+
+      .notice h4 {
+        color: #123d7a;
+
+        margin-bottom: 5px;
+
+        font-size: 15px;
+      }
+
+      .notice p {
+        color: #666;
+
+        font-size: 14px;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 950px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 90px;
+        }
+
+        .logo-area h2,
+        .menu span {
+          display: none;
+        }
+
+        .main-content {
+          margin-left: 90px;
+
+          width: calc(100% - 90px);
+
+          padding: 20px;
+        }
+
+        .topbar {
+          flex-direction: column;
+
+          align-items: flex-start;
+
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+
+        .main-content {
+          padding: 15px;
+        }
+
+        table {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <!-- SIDEBAR -->
+
+      <div class="sidebar">
+        <div class="logo-area">
+          <img src="logo.png" alt="LASUED Logo" />
+
+          <h2>
+            LASUED <br />
+            SIWES
+          </h2>
+        </div>
+
+        <ul class="menu">
+          <li>
+            <a href="#dashboardTop" class="active">
+              <i class="fa-solid fa-house"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="uploadpage.html">
+              <i class="fa-solid fa-upload"></i>
+              <span>Upload Documents</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="submitted-files.html">
+              <i class="fa-solid fa-file-lines"></i>
+              <span>Submitted Files</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#supervisorPanel">
+              <i class="fa-solid fa-user-tie"></i>
+              <span>Supervisor</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="profile.html">
+              <i class="fa-solid fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="logoutLink">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- MAIN CONTENT -->
+
+      <div class="main-content" id="dashboardTop">
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+          <div class="welcome">
+            <h1 id="welcomeName">Welcome Back</h1>
+
+            <p>Track your SIWES documentation and supervisor activities</p>
+          </div>
+
+          <div class="profile">
+            <img id="profileImage" src="profilepic.jpg" alt="Profile" />
+
+            <div class="profile-text">
+              <h4 id="studentMatric">CSC/2026/001</h4>
+
+              <p id="studentCourse">Computer Science</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAT CARDS -->
+
+        <div class="cards">
+          <div class="card">
+            <div class="card-top">
+              <h2 id="uploadedCount">0</h2>
+
+              <i class="fa-solid fa-file"></i>
+            </div>
+
+            <p>Uploaded Documents</p>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h2 id="approvedCount">0</h2>
+
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <p>Approved Documents</p>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h2 id="pendingCount">0</h2>
+
+              <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <p>Pending Reviews</p>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h2>01</h2>
+
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <p>Assigned Supervisor</p>
+          </div>
+        </div>
+
+        <!-- CONTENT GRID -->
+
+        <div class="content-grid">
+          <!-- LEFT -->
+
+          <div>
+            <!-- UPLOAD PANEL -->
+
+            <div class="panel">
+              <div class="panel-title">
+                <h3>Upload SIWES Documents</h3>
+              </div>
+
+              <div class="upload-box">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                <h4>Upload Your Files</h4>
+
+                <p>Submit logbook, SIWES form, acceptance letter and reports</p>
+
+                <a href="uploadpage.html" class="upload-btn">Choose File</a>
+              </div>
+            </div>
+
+            <!-- TABLE -->
+
+            <div class="panel" style="margin-top: 25px">
+              <div class="panel-title">
+                <h3>Recent Submissions</h3>
+              </div>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Document</th>
+
+                    <th>Date</th>
+
+                    <th>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="recentSubmissions"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+
+          <div>
+            <!-- SUPERVISOR -->
+
+            <div class="panel supervisor" id="supervisorPanel">
+              <img src="logo.png" alt="Supervisor" />
+
+              <h3>Dr. Michael Johnson</h3>
+
+              <p>SIWES Coordinator</p>
+
+              <p>Computer Science Department</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+      const currentUser = SIWES.requireUser("student");
+
+      if (currentUser) {
+        const submissions = SIWES.getStudentSubmissions(currentUser);
+        const recentRows = document.getElementById("recentSubmissions");
+        document.getElementById("welcomeName").textContent =
+          `Welcome Back, ${currentUser.fullName}`;
+        document.getElementById("studentMatric").textContent = currentUser.matricNumber;
+        document.getElementById("studentCourse").textContent = currentUser.course;
+        document.getElementById("profileImage").src =
+          currentUser.profileImage || "profilepic.jpg";
+
+        document.getElementById("uploadedCount").textContent = submissions.length
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("approvedCount").textContent = submissions
+          .filter((item) => item.status === "approved")
+          .length.toString()
+          .padStart(2, "0");
+        document.getElementById("pendingCount").textContent = submissions
+          .filter((item) => item.status === "pending")
+          .length.toString()
+          .padStart(2, "0");
+
+        recentRows.innerHTML = submissions.length
+          ? submissions
+              .slice(0, 5)
+              .map(
+                (item) => `
+                  <tr>
+                    <td>${item.projectTitle}</td>
+                    <td>${SIWES.formatDate(item.submittedAt)}</td>
+                    <td><span class="status ${item.status}">${item.status}</span></td>
+                  </tr>
+                `,
+              )
+              .join("")
+          : `
+            <tr>
+              <td colspan="3">No submissions yet. Upload your SIWES document to begin.</td>
+            </tr>
+          `;
+      }
+
+      document.getElementById("logoutLink").addEventListener("click", (event) => {
+        event.preventDefault();
+        SIWES.logout();
+      });
+    </script>
+  </body>
+</html>

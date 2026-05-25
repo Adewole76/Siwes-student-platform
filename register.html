@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>LASUED SIWES Registration</title>
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+
+        min-height: 100vh;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        position: relative;
+
+        /* BACKGROUND IMAGE */
+
+        background:
+          linear-gradient(rgba(10, 35, 80, 0.55), rgba(10, 35, 80, 0.55)),
+          url("school.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      /* MAIN CONTAINER */
+
+      .container {
+        width: 100%;
+
+        padding: 30px 20px 60px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* HEADER */
+
+      .header {
+        width: 100%;
+        max-width: 1100px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 15px;
+
+        margin-bottom: 30px;
+      }
+
+      /* LOGO */
+
+      .header img {
+        width: 80px;
+        height: 80px;
+
+        object-fit: contain;
+
+        background: white;
+
+        border-radius: 50%;
+
+        padding: 5px;
+      }
+
+      /* SCHOOL NAME */
+
+      .header h1 {
+        color: white;
+
+        font-size: 32px;
+
+        font-weight: 900;
+
+        line-height: 1.05;
+
+        letter-spacing: -1px;
+
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      /* CARD */
+
+      .register-card {
+        width: 100%;
+        max-width: 430px;
+
+        background: rgba(255, 255, 255, 0.15);
+
+        backdrop-filter: blur(10px);
+
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        border-radius: 25px;
+
+        padding: 35px 30px;
+
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      /* TITLE */
+
+      .title {
+        text-align: center;
+
+        margin-bottom: 30px;
+      }
+
+      .title h2 {
+        color: white;
+
+        font-size: 28px;
+
+        margin-bottom: 8px;
+
+        font-weight: 700;
+      }
+
+      .title p {
+        color: #e6e6e6;
+
+        font-size: 15px;
+      }
+
+      /* INPUT GROUP */
+
+      .input-group {
+        width: 100%;
+
+        margin-bottom: 18px;
+
+        position: relative;
+      }
+
+      .input-group i {
+        position: absolute;
+
+        top: 50%;
+        left: 15px;
+
+        transform: translateY(-50%);
+
+        color: #1d4e89;
+
+        font-size: 16px;
+      }
+
+      .input-group input,
+      .input-group select {
+        width: 100%;
+
+        padding: 15px 15px 15px 45px;
+
+        border: none;
+
+        outline: none;
+
+        border-radius: 12px;
+
+        background: white;
+
+        font-size: 15px;
+
+        color: #333;
+      }
+
+      select {
+        cursor: pointer;
+      }
+
+      /* BUTTON */
+
+      .register-btn {
+        width: 100%;
+
+        padding: 15px;
+
+        border: none;
+
+        border-radius: 40px;
+
+        background: #123d7a;
+
+        color: white;
+
+        font-size: 17px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        margin-top: 10px;
+
+        transition: 0.3s;
+      }
+
+      .register-btn:hover {
+        background: #0d2d5c;
+
+        transform: translateY(-2px);
+      }
+
+      /* LOGIN LINK */
+
+      .login-link {
+        text-align: center;
+
+        margin-top: 20px;
+      }
+
+      .login-link a {
+        color: white;
+
+        text-decoration: none;
+
+        font-size: 15px;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      .message {
+        display: none;
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 12px;
+        background: #ffe2e2;
+        color: #a71919;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      /* COPYRIGHT */
+
+      .copyright {
+        text-align: center;
+
+        color: white;
+
+        margin-top: 30px;
+
+        font-size: 14px;
+
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: row;
+
+          align-items: center;
+
+          margin-bottom: 25px;
+        }
+
+        .header img {
+          width: 65px;
+          height: 65px;
+        }
+
+        .header h1 {
+          font-size: 20px;
+        }
+
+        .register-card {
+          padding: 28px 22px;
+        }
+
+        .title h2 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- HEADER -->
+
+      <div class="header">
+        <!-- PUT YOUR LOGO INSIDE images/logo.png -->
+
+        <img src="logo.png" alt="LASUED Logo" />
+
+        <h1>
+          LAGOS STATE UNIVERSITY <br />
+          OF EDUCATION
+        </h1>
+      </div>
+
+      <!-- REGISTRATION CARD -->
+
+      <div class="register-card">
+        <div class="title">
+          <h2>Student Registration</h2>
+
+          <p>SIWES Documentation Portal</p>
+        </div>
+
+        <!-- FORM -->
+
+        <form id="registerForm">
+          <div class="input-group">
+            <i class="fa-regular fa-user"></i>
+
+            <input id="fullName" type="text" placeholder="Full Name" required />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-id-card"></i>
+
+            <input
+              id="matricNumber"
+              type="text"
+              placeholder="Matric Number"
+              required
+              inputmode="numeric"
+              title="Enter your matric number"
+            />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="example@gmail.com"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              title="Please enter a valid email address"
+            />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-building"></i>
+
+            <select id="course" required>
+              <option value="">Select Course</option>
+
+              <option>Theater & Performing Arts (B.A)</option>
+
+              <option>Fine Art (B.A)</option>
+
+              <option>Music (B.A)</option>
+
+              <option>Music (B.A Ed)</option>
+
+              <option>Mathematics (B.Sc)</option>
+
+              <option>Physics (B.Sc)</option>
+
+              <option>Chemistry (B.Sc)</option>
+
+              <option>Biology (B.Sc)</option>
+
+              <option>Statistics (B.Sc)</option>
+
+              <option>Computer Science (B.Sc)</option>
+
+              <option>Computer Science (B.Sc Ed)</option>
+
+              <option>Library and Information Science</option>
+
+              <option>Technology Education (B.Ed)</option>
+
+              <option>Transportation Management (B.Sc)</option>
+
+              <option>Geography (B.Sc)</option>
+
+              <option>Home Economics (B.Sc)</option>
+
+              <option>Home Economics (B.Sc Ed)</option>
+
+              <option>Accounting (B.Sc)</option>
+
+              <option>Accounting (B.Sc Ed)</option>
+
+              <option>Entrepreneurship (B.Ed)</option>
+
+              <option>Secretarial Admin (B.Sc Ed)</option>
+
+              <option>Bus Edu (B.Sc Ed)</option>
+
+              <option>Agric Science Education</option>
+
+              <option>Educational Technology (B.Sc Ed)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-layer-group"></i>
+
+            <select id="level" required>
+              <option value="">Select Level</option>
+
+              <option>200 Level</option>
+
+              <option>300 Level</option>
+
+              <option>400 Level</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+
+            <input id="password" type="password" placeholder="Create Password" required />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+
+          <!-- BUTTON -->
+
+          <button class="register-btn">REGISTER</button>
+          <div id="registerMessage" class="message"></div>
+        </form>
+
+        <!-- LOGIN LINK -->
+
+        <div class="login-link">
+          <a href="login.html"> Already have an account? Login </a>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT -->
+
+      <div class="copyright">
+        © 2026 Lagos State University of Education <br />
+
+        SIWES Documentation Portal
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+      const registerForm = document.getElementById("registerForm");
+      const registerMessage = document.getElementById("registerMessage");
+
+      function showRegisterMessage(message) {
+        registerMessage.textContent = message;
+        registerMessage.style.display = "block";
+      }
+
+      registerForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+          showRegisterMessage("Passwords do not match.");
+          return;
+        }
+
+        try {
+          SIWES.registerStudent({
+            fullName: document.getElementById("fullName").value,
+            matricNumber: document.getElementById("matricNumber").value,
+            email: document.getElementById("email").value,
+            course: document.getElementById("course").value,
+            level: document.getElementById("level").value,
+            password,
+          });
+
+          window.location.href = "studentdashboard.html";
+        } catch (error) {
+          showRegisterMessage(error.message);
+        }
+      });
+    </script>
+  </body>
+</html>

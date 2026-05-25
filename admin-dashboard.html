@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LASUED SIWES Admin Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+          linear-gradient(rgba(10, 35, 80, 0.72), rgba(10, 35, 80, 0.72)),
+          url("school.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #172033;
+      }
+
+      .dashboard {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 270px;
+        height: 100vh;
+        position: fixed;
+        padding: 25px 20px;
+        background: rgba(255, 255, 255, 0.16);
+        border-right: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(12px);
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 38px;
+      }
+
+      .logo-area img {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: white;
+        padding: 4px;
+        object-fit: contain;
+      }
+
+      .logo-area h2 {
+        color: white;
+        font-size: 19px;
+        line-height: 1.1;
+      }
+
+      .menu {
+        list-style: none;
+      }
+
+      .menu li {
+        margin-bottom: 12px;
+      }
+
+      .menu a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .menu a:hover,
+      .menu a.active {
+        background: white;
+        color: #123d7a;
+      }
+
+      .main-content {
+        width: calc(100% - 270px);
+        margin-left: 270px;
+        padding: 30px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+
+      .welcome h1 {
+        color: white;
+        font-size: 30px;
+        margin-bottom: 6px;
+      }
+
+      .welcome p {
+        color: #e8edf7;
+        font-size: 15px;
+      }
+
+      .admin-profile {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(255, 255, 255, 0.14);
+        padding: 10px 15px;
+        border-radius: 14px;
+        color: white;
+        backdrop-filter: blur(8px);
+      }
+
+      .admin-profile i {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: white;
+        color: #123d7a;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 18px;
+        margin-bottom: 25px;
+      }
+
+      .card,
+      .panel {
+        background: white;
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .card h2 {
+        color: #123d7a;
+        font-size: 28px;
+      }
+
+      .card i {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #eef4ff;
+        color: #123d7a;
+      }
+
+      .card p {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 0.9fr;
+        gap: 24px;
+      }
+
+      .panel {
+        padding: 24px;
+      }
+
+      .panel-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        margin-bottom: 18px;
+      }
+
+      .panel-title h3 {
+        color: #123d7a;
+        font-size: 21px;
+      }
+
+      .search-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #eef4ff;
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+
+      .search-box input {
+        width: 180px;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: #172033;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 14px 10px;
+        text-align: left;
+        border-bottom: 1px solid #edf0f5;
+        font-size: 14px;
+        vertical-align: top;
+      }
+
+      th {
+        background: #eef4ff;
+        color: #123d7a;
+      }
+
+      .student-name {
+        font-weight: bold;
+        color: #172033;
+      }
+
+      .muted {
+        color: #697386;
+        font-size: 13px;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 6px 11px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .pending {
+        background: #fff4cf;
+        color: #946200;
+      }
+
+      .approved {
+        background: #d8eadf;
+        color: #2f4f1f;
+      }
+
+      .rejected {
+        background: #ffe2e2;
+        color: #a71919;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      button {
+        border: 0;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.25s;
+      }
+
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef4ff;
+        color: #123d7a;
+      }
+
+      .icon-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .approve-btn {
+        background: #1f8f4d;
+        color: white;
+      }
+
+      .reject-btn {
+        background: #d62828;
+        color: white;
+      }
+
+      .analysis-card {
+        background: #f7faff;
+        border-left: 4px solid #123d7a;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+
+      .analysis-card h4 {
+        color: #123d7a;
+        margin-bottom: 8px;
+      }
+
+      .analysis-card p,
+      .analysis-card li {
+        color: #555;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .analysis-list {
+        margin-left: 18px;
+      }
+
+      .comment-box {
+        width: 100%;
+        min-height: 96px;
+        resize: vertical;
+        border: 1px solid #c8d4ea;
+        border-radius: 12px;
+        padding: 12px;
+        outline: 0;
+        font-family: inherit;
+        margin-top: 10px;
+      }
+
+      .review-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .review-buttons button {
+        padding: 13px;
+        border-radius: 12px;
+      }
+
+      .empty-state {
+        padding: 35px 20px;
+        text-align: center;
+        color: #667085;
+      }
+
+      .empty-state i {
+        display: block;
+        color: #123d7a;
+        font-size: 40px;
+        margin-bottom: 12px;
+      }
+
+      @media (max-width: 980px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 86px;
+        }
+
+        .logo-area h2,
+        .menu span {
+          display: none;
+        }
+
+        .main-content {
+          width: calc(100% - 86px);
+          margin-left: 86px;
+          padding: 20px;
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .panel {
+          overflow-x: auto;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .main-content {
+          padding: 15px;
+        }
+
+        .search-box input {
+          width: 110px;
+        }
+
+        th,
+        td {
+          min-width: 120px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <aside class="sidebar">
+        <div class="logo-area">
+          <img src="logo.png" alt="LASUED Logo" />
+          <h2>
+            LASUED <br />
+            SIWES
+          </h2>
+        </div>
+
+        <ul class="menu">
+          <li>
+            <a href="#" class="active">
+              <i class="fa-solid fa-gauge-high"></i>
+              <span>Admin Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#submissions">
+              <i class="fa-solid fa-folder-open"></i>
+              <span>Submissions</span>
+            </a>
+          </li>
+          <li>
+            <a href="#analysis">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Analysis</span>
+            </a>
+          </li>
+          <li>
+            <a href="studentdashboard.html">
+              <i class="fa-solid fa-user-graduate"></i>
+              <span>Student View</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logoutLink">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        <div class="topbar">
+          <div class="welcome">
+            <h1>Admin Review Dashboard</h1>
+            <p>Analyse student SIWES projects and approve or reject submissions.</p>
+          </div>
+
+          <div class="admin-profile">
+            <i class="fa-solid fa-user-shield"></i>
+            <div>
+              <h4>SIWES Admin</h4>
+              <p>Project Review Panel</p>
+            </div>
+          </div>
+        </div>
+
+        <section class="cards">
+          <div class="card">
+            <div class="card-top">
+              <h2 id="totalCount">0</h2>
+              <i class="fa-solid fa-file-lines"></i>
+            </div>
+            <p>Total submissions</p>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h2 id="pendingCount">0</h2>
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <p>Awaiting review</p>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h2 id="approvedCount">0</h2>
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <p>Approved projects</p>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h2 id="rejectedCount">0</h2>
+              <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <p>Rejected projects</p>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel" id="submissions">
+            <div class="panel-title">
+              <h3>Student Project Submissions</h3>
+              <label class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="searchInput" type="search" placeholder="Search" />
+              </label>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Project</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="submissionRows"></tbody>
+            </table>
+
+            <div class="empty-state" id="emptyState">
+              <i class="fa-solid fa-inbox"></i>
+              <p>No project submissions found yet.</p>
+            </div>
+          </div>
+
+          <aside class="panel" id="analysis">
+            <div class="panel-title">
+              <h3>Submission Analysis</h3>
+            </div>
+
+            <div id="analysisContent">
+              <div class="analysis-card">
+                <h4>Select a Project</h4>
+                <p>
+                  Choose any submission from the table to inspect file details,
+                  review quality signals, add comments, then approve or reject.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      const adminUser = SIWES.requireUser("admin");
+      const defaultSubmissions = [
+        {
+          id: "demo-1",
+          studentName: "Judith Azike",
+          matricNumber: "CSC/2026/001",
+          department: "Computer Science",
+          projectTitle: "SIWES Final Report",
+          fileName: "judith-final-report.pdf",
+          fileType: "PDF Document",
+          fileSize: "2.4 MB",
+          submittedAt: "2026-05-20",
+          status: "pending",
+          comment: "",
+        },
+        {
+          id: "demo-2",
+          studentName: "Adebayo Tunde",
+          matricNumber: "CSC/2026/014",
+          department: "Computer Science",
+          projectTitle: "Weekly Logbook",
+          fileName: "week-8-logbook.docx",
+          fileType: "Word Document",
+          fileSize: "1.1 MB",
+          submittedAt: "2026-05-18",
+          status: "approved",
+          comment: "Clear and well arranged weekly activities.",
+        },
+        {
+          id: "demo-3",
+          studentName: "Maryam Bello",
+          matricNumber: "CSC/2026/023",
+          department: "Computer Science",
+          projectTitle: "Acceptance Letter",
+          fileName: "acceptance-letter.jpg",
+          fileType: "Image File",
+          fileSize: "640 KB",
+          submittedAt: "2026-05-17",
+          status: "rejected",
+          comment: "Image is not clear enough. Upload a readable copy.",
+        },
+      ];
+
+      let submissions = loadSubmissions();
+      let selectedId = submissions[0]?.id || null;
+
+      function loadSubmissions() {
+        return SIWES.getSubmissions();
+      }
+
+      function saveSubmissions() {
+        SIWES.saveSubmissions(submissions);
+      }
+
+      function formatDate(dateString) {
+        return SIWES.formatDate(dateString);
+      }
+
+      function getAnalysis(submission) {
+        return SIWES.getAnalysis(submission);
+      }
+
+      function renderCards() {
+        document.getElementById("totalCount").textContent = submissions.length;
+        document.getElementById("pendingCount").textContent = submissions.filter(
+          (item) => item.status === "pending",
+        ).length;
+        document.getElementById("approvedCount").textContent = submissions.filter(
+          (item) => item.status === "approved",
+        ).length;
+        document.getElementById("rejectedCount").textContent = submissions.filter(
+          (item) => item.status === "rejected",
+        ).length;
+      }
+
+      function renderRows() {
+        const rows = document.getElementById("submissionRows");
+        const emptyState = document.getElementById("emptyState");
+        const search = document.getElementById("searchInput").value.toLowerCase();
+        const filtered = submissions.filter((item) => {
+          return `${item.studentName} ${item.matricNumber} ${item.projectTitle} ${item.status}`
+            .toLowerCase()
+            .includes(search);
+        });
+
+        rows.innerHTML = "";
+        emptyState.style.display = filtered.length ? "none" : "block";
+
+        filtered.forEach((item) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>
+              <div class="student-name">${item.studentName}</div>
+              <div class="muted">${item.matricNumber}</div>
+            </td>
+            <td>
+              <div>${item.projectTitle}</div>
+              <div class="muted">${item.fileName}</div>
+            </td>
+            <td>${formatDate(item.submittedAt)}</td>
+            <td><span class="status ${item.status}">${item.status}</span></td>
+            <td>
+              <div class="actions">
+                <button class="icon-btn" title="Analyse" onclick="selectSubmission('${item.id}')">
+                  <i class="fa-solid fa-chart-simple"></i>
+                </button>
+                <button class="icon-btn approve-btn" title="Approve" onclick="updateStatus('${item.id}', 'approved')">
+                  <i class="fa-solid fa-check"></i>
+                </button>
+                <button class="icon-btn reject-btn" title="Reject" onclick="updateStatus('${item.id}', 'rejected')">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </td>
+          `;
+          rows.appendChild(row);
+        });
+      }
+
+      function renderAnalysis() {
+        const container = document.getElementById("analysisContent");
+        const selected = submissions.find((item) => item.id === selectedId);
+
+        if (!selected) {
+          container.innerHTML = `
+            <div class="analysis-card">
+              <h4>Select a Project</h4>
+              <p>Choose a submission from the table to begin review.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const analysis = getAnalysis(selected);
+        container.innerHTML = `
+          <div class="analysis-card">
+            <h4>${selected.projectTitle}</h4>
+            <p><strong>${selected.studentName}</strong> - ${selected.matricNumber}</p>
+            <p>${selected.department}</p>
+          </div>
+
+          <div class="analysis-card">
+            <h4>File Details</h4>
+            <p>Name: ${selected.fileName}</p>
+            <p>Type: ${selected.fileType}</p>
+            <p>Size: ${selected.fileSize}</p>
+            <p>Submitted: ${formatDate(selected.submittedAt)}</p>
+          </div>
+
+          <div class="analysis-card">
+            <h4>Analysis Score: ${analysis.score}%</h4>
+            <ul class="analysis-list">
+              ${analysis.points.map((point) => `<li>${point}</li>`).join("")}
+            </ul>
+          </div>
+
+          <div class="analysis-card">
+            <h4>Admin Comment</h4>
+            <textarea class="comment-box" id="adminComment" placeholder="Write review feedback for the student">${selected.comment || ""}</textarea>
+            <div class="review-buttons">
+              <button class="approve-btn" onclick="submitReview('approved')">
+                <i class="fa-solid fa-check"></i> Approve
+              </button>
+              <button class="reject-btn" onclick="submitReview('rejected')">
+                <i class="fa-solid fa-xmark"></i> Reject
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      function selectSubmission(id) {
+        selectedId = id;
+        renderAnalysis();
+      }
+
+      function updateStatus(id, status, comment = null) {
+        submissions = submissions.map((item) => {
+          if (item.id !== id) {
+            return item;
+          }
+
+          return {
+            ...item,
+            status,
+            comment: comment ?? item.comment,
+            reviewedAt: new Date().toISOString().slice(0, 10),
+          };
+        });
+
+        selectedId = id;
+        saveSubmissions();
+        render();
+      }
+
+      function submitReview(status) {
+        const comment = document.getElementById("adminComment").value.trim();
+        updateStatus(selectedId, status, comment);
+      }
+
+      function render() {
+        renderCards();
+        renderRows();
+        renderAnalysis();
+      }
+
+      document.getElementById("searchInput").addEventListener("input", renderRows);
+      document.getElementById("logoutLink").addEventListener("click", (event) => {
+        event.preventDefault();
+        SIWES.logout();
+      });
+
+      if (adminUser) {
+        render();
+      }
+    </script>
+  </body>
+</html>
