@@ -41,53 +41,11 @@
 
       /* TOP DESIGN */
 
-      .top-design {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 30%;
-        height: 40px;
-        background: #003399;
-        border-bottom-left-radius: 280px;
-        z-index: 1;
-      }
-
-      .top-design::after {
-        content: "";
-        position: absolute;
-        bottom: -6px;
-        left: 30px;
-        width: 330px;
-        height: 9px;
-        background: gold;
-        border-bottom-left-radius: 280px;
-        z-index: 2;
-      }
+    
 
       /* BOTTOM DESIGN */
 
-      .bottom-design {
-        position: absolute;
-        bottom: -100px;
-        left: -120px;
-        width: 440px;
-        height: 180px;
-        background: #0a2c91;
-        border-top-right-radius: 280px;
-        z-index: 2;
-      }
-
-      .bottom-design::after {
-        content: "";
-        position: absolute;
-        top: -6px;
-        left: 30px;
-        width: 300px;
-        height: 9px;
-        background: gold;
-        border-top-right-radius: 380px;
-      }
-
+      
       /* HEADER */
 
       .header {
@@ -120,7 +78,7 @@
         position: relative;
         z-index: 3;
         width: 340px;
-        background: #f8f8f8;
+        background: white;
         margin: auto;
         top: 50%;
         transform: translateY(-54%);
@@ -132,39 +90,8 @@
 
       /* CARD TOP COLORS */
 
-      .login-container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5.5px;
-        background: linear-gradient(
-          to right,
-          #0a2c91 33%,
-          gold 33%,
-          gold 66%,
-          #d62828 66%
-        );
-      }
-
       /* CARD BOTTOM COLORS */
 
-      .login-container::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 5.5px;
-        background: linear-gradient(
-          to right,
-          #d62828 33%,
-          gold 33%,
-          gold 66%,
-          #0a2c91 66%
-        );
-      }
 
       .portal-title {
         text-align: center;
