@@ -8,7 +8,8 @@ const studentInput = document.querySelector('.student-div');
 console.log(studentInput)
 const administratorInput = document.querySelector('.admin-div')
 console.log(administratorInput);
-
+const studentPassword = document.querySelector('.studentpassinput');
+const adminPassword = document.querySelector('.adminpassinput');
 
 
 
@@ -91,21 +92,19 @@ console.log(administratorInput);
   studentRolebtn.addEventListener('click', function(){
     console.log('i am working')
     currentRole = 'student';
-    console.log(currentRole)
     studentInput.classList.remove('hidden');
-    console.log(studentInput)
     administratorInput.classList.add('hidden');
-    console.log(administratorInput)
+    studentPassword.classList.remove('hidden');
+    adminPassword.classList.add('hidden');
   });
 
   coordinatorRolebtn.addEventListener('click', function(){
     console.log('i am working')
     currentRole = 'coordinator';
-    console.log(currentRole);
     administratorInput.classList.remove('hidden');
-    console.log(administratorInput)
     studentInput.classList.add('hidden');
-    console.log(studentInput)
+   adminPassword.classList.remove('hidden');
+    studentPassword.classList.add('hidden');
   });
 
   function read(key, fallback) {
@@ -337,11 +336,11 @@ console.log(administratorInput);
     let identifier, password;
   
     if (currentRole === 'student') {
-      identifier = document.querySelector('#matric-input').value;
-      password = document.querySelector('#student-password').value;
+      identifier = document.querySelector('#loginIdentifier').value;
+      password = document.querySelector('#loginPassword').value;
     } else {
-      identifier = document.querySelector('#email-input').value;
-      password = document.querySelector('#coordinator-password').value;
+      identifier = document.querySelector('#Administrator').value;
+      password = document.querySelector('#loginPassword').value;
     }
   
     const user = SIWES.login(identifier, password);
