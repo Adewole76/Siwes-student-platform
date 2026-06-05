@@ -90,7 +90,7 @@
       }
       
       .hidden{
-        display: none;
+        display: none !important;
       }
       .switchroles{
         background-color: red;
@@ -296,16 +296,15 @@
             id="loginIdentifier"
             type="text"
             placeholder="Matric Number or Email"
-            required
           />
         </div>
-        <div class="input-group admin-div">
+        <div class="input-group admin-div hidden">
           <input
           type="text"
           class="administrator-input"
           id="Administrator"
           placeholder="Email Address"
-          required>
+         >
         </div>
 
         <div class="input-group">

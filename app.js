@@ -3,9 +3,10 @@ console.log(studentRolebtn);
 const coordinatorRolebtn = document.querySelector('.coordinator');
 console.log(coordinatorRolebtn);
 let currentRole = 'student';
+const loginBtn = document.querySelector("login-btn")
 const studentInput = document.querySelector('.student-div');
 console.log(studentInput)
-const administratorInput = document.querySelector('.administrator-div')
+const administratorInput = document.querySelector('.admin-div')
 console.log(administratorInput);
 
 
@@ -87,15 +88,23 @@ console.log(administratorInput);
   ];
 
   studentRolebtn.addEventListener('click', function(){
+    console.log('i am working')
     currentRole = 'student';
+    console.log(currentRole)
     studentInput.classList.remove('hidden');
+    console.log(studentInput)
     administratorInput.classList.add('hidden');
-  
+    console.log(administratorInput)
   });
+
   coordinatorRolebtn.addEventListener('click', function(){
+    console.log('i am working')
     currentRole = 'coordinator';
-    administratorInput.classList.remove('hidden')
+    console.log(currentRole);
+    administratorInput.classList.remove('hidden');
+    console.log(administratorInput)
     studentInput.classList.add('hidden');
+    console.log(studentInput)
   });
   function read(key, fallback) {
     try {
