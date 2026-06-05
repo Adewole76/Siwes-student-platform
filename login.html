@@ -77,7 +77,8 @@
       .login-container {
         position: relative;
         z-index: 3;
-        width: 340px;
+        width: 30%;
+        height: 80vh;
         background: white;
         margin: auto;
         top: 50%;
@@ -86,6 +87,14 @@
         padding: 28px 28px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
         overflow: hidden;
+      }
+      
+      .hidden{
+        display: none;
+      }
+      .switchroles{
+        background-color: red;
+        padding: 1em;
       }
 
       /* CARD TOP COLORS */
@@ -276,14 +285,27 @@
       </div>
 
       <form id="loginForm">
-        <div class="input-group">
+        <div class="switchroles">
+          <button type="button" class="student rolebutton">Student</button>
+          <button type="button" class="coordinator role-button">Coordinator</button>
+        </div>
+        <div class="input-group student-div">
           <i class="fa-regular fa-user"></i>
           <input
+             class="student-input"
             id="loginIdentifier"
             type="text"
             placeholder="Matric Number or Email"
             required
           />
+        </div>
+        <div class="input-group admin-div">
+          <input
+          type="text"
+          class="administrator-input"
+          id="Administrator"
+          placeholder="Email Address"
+          required>
         </div>
 
         <div class="input-group">

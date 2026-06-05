@@ -1,3 +1,16 @@
+const studentRolebtn = document.querySelector('.student');
+console.log(studentRolebtn);
+const coordinatorRolebtn = document.querySelector('.coordinator');
+console.log(coordinatorRolebtn);
+let currentRole = 'student';
+const studentInput = document.querySelector('.student-div');
+console.log(studentInput)
+const administratorInput = document.querySelector('.administrator-div')
+console.log(administratorInput);
+
+
+
+
 (function () {
   const usersKey = "siwesUsers";
   const sessionKey = "siwesCurrentUser";
@@ -73,6 +86,17 @@
     },
   ];
 
+  studentRolebtn.addEventListener('click', function(){
+    currentRole = 'student';
+    studentInput.classList.remove('hidden');
+    administratorInput.classList.add('hidden');
+  
+  });
+  coordinatorRolebtn.addEventListener('click', function(){
+    currentRole = 'coordinator';
+    administratorInput.classList.remove('hidden')
+    studentInput.classList.add('hidden');
+  });
   function read(key, fallback) {
     try {
       return JSON.parse(localStorage.getItem(key)) || fallback;
