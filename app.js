@@ -3,7 +3,7 @@ console.log(studentRolebtn);
 const coordinatorRolebtn = document.querySelector('.coordinator');
 console.log(coordinatorRolebtn);
 let currentRole = 'student';
-const loginBtn = document.querySelector("login-btn")
+const loginBtn = document.querySelector('.login-btn')
 const studentInput = document.querySelector('.student-div');
 console.log(studentInput)
 const administratorInput = document.querySelector('.admin-div')
@@ -87,6 +87,7 @@ console.log(administratorInput);
     },
   ];
 
+  // buttons for switching roles
   studentRolebtn.addEventListener('click', function(){
     console.log('i am working')
     currentRole = 'student';
@@ -106,6 +107,7 @@ console.log(administratorInput);
     studentInput.classList.add('hidden');
     console.log(studentInput)
   });
+
   function read(key, fallback) {
     try {
       return JSON.parse(localStorage.getItem(key)) || fallback;
@@ -175,6 +177,7 @@ console.log(administratorInput);
       );
     });
 
+    
     if (!user) {
       return null;
     }
@@ -330,6 +333,30 @@ console.log(administratorInput);
       ],
     };
   }
+  loginBtn.addEventListener('click', function() {
+    let identifier, password;
+  
+    if (currentRole === 'student') {
+      identifier = document.querySelector('#matric-input').value;
+      password = document.querySelector('#student-password').value;
+    } else {
+      identifier = document.querySelector('#email-input').value;
+      password = document.querySelector('#coordinator-password').value;
+    }
+  
+    const user = SIWES.login(identifier, password);
+  
+    if (!user) {
+      alert('Invalid credentials');
+      return;
+    }
+  
+    if (user.role === 'student') {
+      window.location.href = 'studentdashboard.html';
+    } else {
+      window.location.href = 'coordinatordash.html'; // or admin dashboard
+    }
+  });
 
   window.SIWES = {
     seed,
